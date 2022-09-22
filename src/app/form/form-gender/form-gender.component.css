@@ -1,0 +1,4 @@
+.dflexcolomn{
+  display: flex;
+  flex-direction: column;
+}

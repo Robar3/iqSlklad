@@ -1,0 +1,69 @@
+<div >
+<form  [formGroup]="formGroup" class="formWrapper dFlexColumn" (ngSubmit)="save()">
+
+
+  <mat-form-field class="mrgBtm20">
+    <mat-label>ФИО</mat-label>
+    <input type="text" matInput required formControlName="fio">
+    <mat-error *ngIf="formGroup.controls['fio'].invalid&& validate">
+      Введите имя, фамилию, отчество через пробел, отчество не обязательно
+    </mat-error>
+  </mat-form-field>
+
+  <div>
+    <label id="example-radio-group-label" >Пол</label>
+    <mat-radio-group aria-label="Select an option" formControlName="gender" (ngModelChange)="changeGender()" >
+      <mat-radio-button value="М">М</mat-radio-button>
+      <mat-radio-button value="Ж">Ж</mat-radio-button>
+    </mat-radio-group>
+    <mat-error *ngIf="formGroup.controls['gender'].invalid&&validate">
+      Выберите пол
+    </mat-error>
+</div>
+
+  <mat-form-field>
+    <mat-label>Дата рождения</mat-label>
+    <input (ngModelChange)="compareDateForm()" matInput [matDatepicker]="dp3" required formControlName="birthday" >
+    <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+    <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+    <mat-error *ngIf="formGroup.controls['birthday'].invalid&&validate">
+      Выберите дату вашего рождения
+    </mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field *ngIf="after18">
+    <mat-label>Семейное положение</mat-label>
+    <mat-select formControlName="married" required>
+      <mat-option value="Женат" *ngIf="formGroup.get('gender')?.value=='М'">Женат</mat-option>
+      <mat-option value="Замужем" *ngIf="formGroup.get('gender')?.value=='Ж'">Замужем</mat-option>
+      <mat-option value="В разводе">В разводе</mat-option>
+      <mat-option value="Нет">Нет</mat-option>
+    </mat-select>
+    <mat-error *ngIf="formGroup.controls['married'].invalid&&validate">
+      Выберите ваше семейное положение
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="mrgBtm20">
+    <mat-label>Количество детей</mat-label>
+    <input onkeypress="return event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode));" type="number" matInput required  formControlName="childrens" (keydown.shift.+)="plus()" (keydown.-)="minus()">
+    <mat-error *ngIf="formGroup.controls['childrens'].invalid&& validate">
+    Ведите количество детей, но не больше 100
+  </mat-error>
+  </mat-form-field>
+
+  <mat-form-field >
+    <mat-label>Email</mat-label>
+    <input type="email" matInput required formControlName="email"
+           placeholder="Ex. pat@example.com">
+    <mat-error *ngIf="formGroup.controls['email'].invalid&&validate ">
+      ВВедите корректную почту
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Коментарий</mat-label>
+    <textarea matInput formControlName="comment"></textarea>
+  </mat-form-field>
+  <button mat-button type="submit" [disabled]="buttonDisables">Сохранить</button>
+</form>
+</div>

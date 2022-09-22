@@ -1,0 +1,9 @@
+<mat-form-field>
+  <mat-label>Дата рождения</mat-label>
+  <input (ngModelChange)="compareDateForm()" matInput [matDatepicker]="dp3" required formControlName="birthday" >
+  <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+  <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+  <mat-error *ngIf="formGroup.controls['birthday'].invalid&&validate">
+    Выберите дату вашего рождения
+  </mat-error>
+</mat-form-field>
