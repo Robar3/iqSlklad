@@ -1,7 +1,9 @@
+
 <mat-form-field class="mrgBtm20">
   <mat-label>ФИО</mat-label>
-  <input type="text" matInput required formControlName="fio">
-  <mat-error *ngIf="formGroup.controls['fio'].invalid&& validate">
+  <input type="text" matInput required [formControl]="fio">
+  <mat-error *ngIf="fio.invalid&& formDateService.validate">
     Введите имя, фамилию, отчество через пробел, отчество не обязательно
   </mat-error>
 </mat-form-field>
+

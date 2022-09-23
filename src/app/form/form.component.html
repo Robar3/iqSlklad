@@ -5,18 +5,19 @@
   <mat-form-field class="mrgBtm20">
     <mat-label>ФИО</mat-label>
     <input type="text" matInput required formControlName="fio">
-    <mat-error *ngIf="formGroup.controls['fio'].invalid&& validate">
+    <mat-error *ngIf="formGroup.controls['fio'].invalid&&formDateService.validate">
       Введите имя, фамилию, отчество через пробел, отчество не обязательно
     </mat-error>
   </mat-form-field>
 
+<!--  <app-form-input formControlName="fio"></app-form-input>-->
   <div>
     <label id="example-radio-group-label" >Пол</label>
     <mat-radio-group aria-label="Select an option" formControlName="gender" (ngModelChange)="changeGender()" >
       <mat-radio-button value="М">М</mat-radio-button>
       <mat-radio-button value="Ж">Ж</mat-radio-button>
     </mat-radio-group>
-    <mat-error *ngIf="formGroup.controls['gender'].invalid&&validate">
+    <mat-error *ngIf="formGroup.controls['gender'].invalid&&formDateService.validate">
       Выберите пол
     </mat-error>
 </div>
@@ -26,7 +27,7 @@
     <input (ngModelChange)="compareDateForm()" matInput [matDatepicker]="dp3" required formControlName="birthday" >
     <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
     <mat-datepicker #dp3 disabled="false"></mat-datepicker>
-    <mat-error *ngIf="formGroup.controls['birthday'].invalid&&validate">
+    <mat-error *ngIf="formGroup.controls['birthday'].invalid&&formDateService.validate">
       Выберите дату вашего рождения
     </mat-error>
   </mat-form-field>
@@ -40,14 +41,14 @@
       <mat-option value="В разводе">В разводе</mat-option>
       <mat-option value="Нет">Нет</mat-option>
     </mat-select>
-    <mat-error *ngIf="formGroup.controls['married'].invalid&&validate">
+    <mat-error *ngIf="formGroup.controls['married'].invalid&&formDateService.validate">
       Выберите ваше семейное положение
     </mat-error>
   </mat-form-field>
   <mat-form-field class="mrgBtm20">
     <mat-label>Количество детей</mat-label>
     <input onkeypress="return event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode));" type="number" matInput required  formControlName="childrens" (keydown.shift.+)="plus()" (keydown.-)="minus()">
-    <mat-error *ngIf="formGroup.controls['childrens'].invalid&& validate">
+    <mat-error *ngIf="formGroup.controls['childrens'].invalid&& formDateService.validate">
     Ведите количество детей, но не больше 100
   </mat-error>
   </mat-form-field>
@@ -56,7 +57,7 @@
     <mat-label>Email</mat-label>
     <input type="email" matInput required formControlName="email"
            placeholder="Ex. pat@example.com">
-    <mat-error *ngIf="formGroup.controls['email'].invalid&&validate ">
+    <mat-error *ngIf="formGroup.controls['email'].invalid&&formDateService.validate ">
       ВВедите корректную почту
     </mat-error>
   </mat-form-field>

@@ -11,12 +11,12 @@ import {Router} from "@angular/router";
 export class FormComponent implements OnInit {
   buttonDisables: boolean = false;
   counter: number = 0;
-  validate: boolean = false;
   formGroup: FormGroup;
   after18: boolean = false;
 
-  constructor(private fb: FormBuilder, private formDateService: FormDateService, private router: Router) {
+  constructor(private fb: FormBuilder, public formDateService: FormDateService, private router: Router) {
     this.formGroup = this.fb.group({
+      // fio:"",
       fio: new FormControl("",
         [Validators.pattern("^[а-яА-ЯёЁ]+\\s[а-яА-ЯёЁ]+$|^[а-яА-ЯёЁ]+\\s[а-яА-ЯёЁ]+\\s[а-яА-ЯёЁ]+$"),
           Validators.required]),
@@ -50,7 +50,7 @@ export class FormComponent implements OnInit {
     } else {
       this.buttonDisables = true;
       this.counter++;
-      this.validate = true
+      this.formDateService.validate = true
       if (this.counter > 2) {
         this.formGroup.reset();
         this.counter=0;

@@ -1,7 +1,7 @@
-<mat-form-field class="mrgBtm20">
-  <mat-label>Количество детей</mat-label>
-  <input onkeypress="return event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode));" type="number" matInput required  formControlName="childrens" (keydown.shift.+)="plus()" (keydown.-)="minus()">
-  <mat-error *ngIf="formGroup.controls['childrens'].invalid&& validate">
-    Ведите количество детей, но не больше 100
-  </mat-error>
-</mat-form-field>
+<!--<mat-form-field class="mrgBtm20">-->
+<!--  <mat-label>Количество детей</mat-label>-->
+<!--  <input onkeypress="return event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode));" type="number" matInput required  formControlName="childrens" (keydown.shift.+)="plus()" (keydown.-)="minus()">-->
+<!--  <mat-error *ngIf="formGroup.controls['childrens'].invalid&& validate">-->
+<!--    Ведите количество детей, но не больше 100-->
+<!--  </mat-error>-->
+<!--</mat-form-field>-->
