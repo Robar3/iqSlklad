@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validator, Validators} from "@angular/forms";
 import {FormDateService} from "../form-date.service";
 import {Router} from "@angular/router";
 
@@ -16,14 +16,13 @@ export class FormComponent implements OnInit {
 
   constructor(private fb: FormBuilder, public formDateService: FormDateService, private router: Router) {
     this.formGroup = this.fb.group({
-      // fio:"",
-      fio: new FormControl("",
+      fio:new FormControl("",
         [Validators.pattern("^[а-яА-ЯёЁ]+\\s[а-яА-ЯёЁ]+$|^[а-яА-ЯёЁ]+\\s[а-яА-ЯёЁ]+\\s[а-яА-ЯёЁ]+$"),
           Validators.required]),
       gender: new FormControl("", Validators.required),
       birthday: new FormControl({value: "", disabled: true}, Validators.required),
       married: new FormControl("", Validators.required),
-      childrens: new FormControl("", [Validators.min(0), Validators.max(100)]),
+      childrens: new FormControl(0, [Validators.min(0), Validators.max(100)]),
       email: new FormControl("", [Validators.required, Validators.email]),
       comment: new FormControl("")
     })
@@ -50,13 +49,18 @@ export class FormComponent implements OnInit {
     } else {
       this.buttonDisables = true;
       this.counter++;
-      this.formDateService.validate = true
+      this.formDateService.validate = true ;
+      console.log("fio:"+this.formGroup.get('fio')?.value);
       if (this.counter > 2) {
         this.formGroup.reset();
         this.counter=0;
+
       }
+
       setTimeout(() => this.buttonDisables = false, 10000)
+
     }
+
 
   }
 

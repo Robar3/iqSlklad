@@ -19,13 +19,12 @@ import {FormDateService} from "../../form-date.service";
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => FormComponent),
+      useExisting: forwardRef(() => FormInputComponent),
       multi: true
     }
   ]
 })
 export class FormInputComponent implements OnInit , ControlValueAccessor {
-  // public childForm: FormGroup ;
 
   onChange(val:any):any{};
   onTouch():any{};
@@ -34,19 +33,16 @@ export class FormInputComponent implements OnInit , ControlValueAccessor {
       Validators.required]);
 
   constructor(public formDateService:FormDateService) {
-    // this.childForm = fb.group({
-    //   fio: new FormControl("",
-    //     [Validators.pattern("^[а-яА-ЯёЁ]+\\s[а-яА-ЯёЁ]+$|^[а-яА-ЯёЁ]+\\s[а-яА-ЯёЁ]+\\s[а-яА-ЯёЁ]+$"),
-    //       Validators.required]),
-    // })
+
   }
+
+
 
   ngOnInit(): void {
     this.fio.valueChanges.subscribe((val)=>{
       if (this.onChange){
         this.onChange(val);
       }
-      console.log(val);
     })
   }
 
@@ -59,7 +55,7 @@ export class FormInputComponent implements OnInit , ControlValueAccessor {
   }
 
   writeValue(obj: any): void {
-    this,this.fio.setValue(obj);
+    this.fio.setValue(obj);
   }
 
 

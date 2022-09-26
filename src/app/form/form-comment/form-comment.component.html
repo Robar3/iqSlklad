@@ -1,4 +1,7 @@
-<!--<mat-form-field>-->
-<!--  <mat-label>Коментарий</mat-label>-->
-<!--  <textarea matInput formControlName="comment"></textarea>-->
-<!--</mat-form-field>-->
+<mat-form-field>
+  <mat-label>Коментарий</mat-label>
+  <textarea matInput [formControl]="comment"></textarea>
+  <mat-error *ngIf="comment.invalid&&formDateService.validate">
+    Комментарий должен быть на русском языке
+  </mat-error>
+</mat-form-field>
