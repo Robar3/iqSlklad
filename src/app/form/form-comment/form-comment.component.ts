@@ -19,7 +19,7 @@ export class FormCommentComponent implements OnInit,ControlValueAccessor {
 
   onChange(val:any):any{};
   onTouch():any{};
-  comment=new FormControl("");
+  comment=new FormControl("",Validators.pattern("[а-яА-ЯёЁ\\s]*"));
 
   constructor(public formDateService:FormDateService) {
 
@@ -46,5 +46,6 @@ export class FormCommentComponent implements OnInit,ControlValueAccessor {
   writeValue(obj: any): void {
     this.comment.setValue(obj);
   }
+
 
 }

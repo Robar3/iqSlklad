@@ -24,7 +24,7 @@ export class FormComponent implements OnInit {
       married: new FormControl("", Validators.required),
       childrens: new FormControl(0, [Validators.min(0), Validators.max(100)]),
       email: new FormControl("", [Validators.required, Validators.email]),
-      comment: new FormControl("")
+      comment: new FormControl("",Validators.pattern("[а-яА-ЯёЁ\\s]*"))
     })
   }
 
